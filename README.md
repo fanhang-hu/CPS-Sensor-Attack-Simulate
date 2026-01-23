@@ -12,5 +12,18 @@ attack.py simulates bias and delay attacks.
 
 Now, you can run and monitor the syscalls.
 
-First of all, you should 
-```gcc attack.c -o attack```
+First of all, you should ```gcc attack.c -o attack```. And then,
+
+```
+python3 sensor_sim.py
+
+python3 app.py /tmp/sensor_spoofed
+
+strace -T -o attack_trace.txt -e trace=read,write,nanosleep,clock_nanosleep ./attack
+```
+
+Then, you will get attack_trace.txt and you can analysis it.
+
+Compared ```read(3, "\0\0\0\0", 4)``` and ```write(4, "\0\0 A", 4)```, ```read(3, "\0\0\200?", 4)``` and ```write(4, "\0\0000A", 4)```, etc, the bias attack successed.
+
+```clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.505256>``` means the delay attack successed.
