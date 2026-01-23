@@ -1,4 +1,4 @@
-# CPS-Sensor-Attack-Simulat
+# CPS-Sensor-Attack-Simulate
 
 I conducted a simulation of sensor attacks on the host, and used **strace** to track whether abnormal syscall occurred.
 
