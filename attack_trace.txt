@@ -1,0 +1,76 @@
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0`\17\2\0\0\0\0\0"..., 832) = 832 <0.000085>
+read(3, "\0\0\0\0", 4)                  = 4 <0.000010>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.503209>
+write(4, "\0\0 A", 4)                   = 4 <0.000450>
+read(3, "\0\0\200?", 4)                 = 4 <0.501323>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.505218>
+write(4, "\0\0000A", 4)                 = 4 <0.000338>
+read(3, "\0\0\0@", 4)                   = 4 <0.499691>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.505360>
+write(4, "\0\0@A", 4)                   = 4 <0.000197>
+read(3, "\0\0@@", 4)                    = 4 <0.498498>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.500781>
+write(4, "\0\0PA", 4)                   = 4 <0.000127>
+read(3, "\0\0\200@", 4)                 = 4 <0.504495>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.505224>
+write(4, "\0\0`A", 4)                   = 4 <0.000092>
+read(3, "\0\0\240@", 4)                 = 4 <0.495123>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.502166>
+write(4, "\0\0pA", 4)                   = 4 <0.000407>
+read(3, "\0\0\300@", 4)                 = 4 <0.500564>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.505237>
+write(4, "\0\0\200A", 4)                = 4 <0.000132>
+read(3, "\0\0\340@", 4)                 = 4 <0.496253>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.505247>
+write(4, "\0\0\210A", 4)                = 4 <0.000484>
+read(3, "\0\0\0A", 4)                   = 4 <0.495791>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.505240>
+write(4, "\0\0\220A", 4)                = 4 <0.000062>
+read(3, "\0\0\20A", 4)                  = 4 <0.497171>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.505400>
+write(4, "\0\0\230A", 4)                = 4 <0.000089>
+read(3, "\0\0 A", 4)                    = 4 <0.498477>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.505226>
+write(4, "\0\0\240A", 4)                = 4 <0.000217>
+read(3, "\0\0000A", 4)                  = 4 <0.496121>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.505321>
+write(4, "\0\0\250A", 4)                = 4 <0.000246>
+read(3, "\0\0@A", 4)                    = 4 <0.499758>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.505256>
+write(4, "\0\0\260A", 4)                = 4 <0.000134>
+read(3, "\0\0PA", 4)                    = 4 <0.500705>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.501526>
+write(4, "\0\0\270A", 4)                = 4 <0.000335>
+read(3, "\0\0`A", 4)                    = 4 <0.498986>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.505340>
+write(4, "\0\0\300A", 4)                = 4 <0.000144>
+read(3, "\0\0pA", 4)                    = 4 <0.499688>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.505223>
+write(4, "\0\0\310A", 4)                = 4 <0.000351>
+read(3, "\0\0\200A", 4)                 = 4 <0.500695>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.504400>
+write(4, "\0\0\320A", 4)                = 4 <0.000139>
+read(3, "\0\0\210A", 4)                 = 4 <0.496824>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.501797>
+write(4, "\0\0\330A", 4)                = 4 <0.000288>
+read(3, "\0\0\220A", 4)                 = 4 <0.500655>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.500878>
+write(4, "\0\0\340A", 4)                = 4 <0.000175>
+read(3, "\0\0\230A", 4)                 = 4 <0.504744>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.500270>
+write(4, "\0\0\350A", 4)                = 4 <0.000542>
+read(3, "\0\0\240A", 4)                 = 4 <0.500339>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.502096>
+write(4, "\0\0\360A", 4)                = 4 <0.000217>
+read(3, "\0\0\250A", 4)                 = 4 <0.500751>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.504539>
+write(4, "\0\0\370A", 4)                = 4 <0.000213>
+read(3, "\0\0\260A", 4)                 = 4 <0.501264>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.501616>
+write(4, "\0\0\0B", 4)                  = 4 <0.000191>
+read(3, "\0\0\270A", 4)                 = 4 <0.502029>
+clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=500000000}, NULL) = 0 <0.500270>
+write(4, "\0\0\4B", 4)                  = 4 <0.000145>
+read(3, 0xffffd88f7728, 4)              = ? ERESTARTSYS (To be restarted if SA_RESTART is set) <0.147181>
+--- SIGINT {si_signo=SIGINT, si_code=SI_KERNEL} ---
++++ killed by SIGINT +++
