@@ -12,11 +12,122 @@ Here are some operates and syscalls, which can be caught by [<u>NoDrop</u>](http
 
 Now, I'd like to analyze the closed-loop control and the results. ```plant.py``` is the work scene we assumed. It's a 1D plant. ```sensor.py``` will sent specific signals to ```controller.py```. ```mitm.c``` is the attack, which may tamper the signal by Bias, Delay, Replay, Jitter, Drop and Scale. ```run_demo.sh``` integrate plant.py, sensor.py, controller.py and mitm.c as a script. ```plot.py``` draw three pictures to illustrate the demo. ```parse_seq.py``` try to analyze Replay attack.
 
+**How to run**
+
+We need to split to **Terminal A** and **Terminal B**.
+
+First of all, make dir to save ```strace``` log.
+```
+cd cps_bench
+mkdir -p traces
+rm -f traces/*
+```
+
+After that, we run baseline first, in **Terminal A**:
+```
+./run_demo.sh pass
+```
+See some *pid* in the terminal
+```
+[run_demo] plant=... sensor=... mitm=12345 controller=...
+```
+
+In **Terminal B**:
+```
+MITM_PID=12345
+
+strace -ff -ttt -s 200 -yy \
+  -o traces/pass \
+  -e trace=network,file,process,desc \
+  -p $MITM_PID
+```
+
+Then the file ```trace/pass.*``` exist here.
+
+Every attack do the same operate.
+```
+# BIAS
+strace -ff -ttt -s 200 -yy \
+  -o traces/bias \
+  -e trace=network,file,process,desc \
+  -p $MITM_PID
+
+# DELAY
+strace -ff -ttt -s 200 -yy \
+  -o traces/delay \
+  -e trace=network,file,process,desc \
+  -p $MITM_PID
+
+# REPLAY
+strace -ff -ttt -s 200 -yy -xx \
+  -o traces/replay \
+  -e trace=network,file,process,desc \
+  -p $MITM_PID
+
+# JITTER
+strace -ff -ttt -s 200 -yy \
+  -o traces/jitter \
+  -e trace=network,file,process,desc \
+  -p $MITM_PID
+
+# DROP
+strace -ff -ttt -s 200 -yy \
+  -o traces/drop \
+  -e trace=network,file,process,desc \
+  -p $MITM_PID
+
+# SCALE
+strace -ff -ttt -s 200 -yy \
+  -o traces/scale \
+  -e trace=network,file,process,desc \
+  -p $MITM_PID
+```
+
 ```Figure_1.png``` shows that controller can catch signals immediately. ```Figure_2.png``` shows that attacks can affact the plant. ```Figure_3.png``` shows the Bias attack (+1.5).
 
 Now I would like to analyze ```/traces```:
 
 In ```pass.25692```, there's four syscalls: recvfrom(receive measurement package), sendto(send measurement package), poll(wait for socket or timeout), write. Compared to ```bias.*, delay.*, replay.*, jitter.*, drop.*, scale.*```, there's no new syscall exist. I would like to claim that delay and jitter attack here, are not use ```nanosleep```, they use ```ppoll(timeout)```.
+
+**Analyze**
+
+To analyze, pre-process is as follows:
+```
+PASS_FILE=$(ls traces/pass.* | head -n1)
+BIAS_FILE=$(ls traces/bias.* | head -n1)
+DELAY_FILE=$(ls traces/delay.* | head -n1)
+REPLAY_FILE=$(ls traces/replay.* | head -n1)
+JITTER_FILE=$(ls traces/jitter.* | head -n1)
+DROP_FILE=$(ls traces/drop.* | head -n1)
+SCALE_FILE=$(ls traces/scale.* | head -n1)
+```
+
+Bias attack is not easy to see without seeing the details of syscall.
+
+Delay and Jitter can be discovered using:
+```
+hufanhang@ubuntu$ poll_timeout_rate () {
+> local total=$(grep -c "poll(" "$1")
+> local to=$(grep "poll(" "$1" | grep -c "= 0")
+> echo "file=$1 poll_total=$total poll_timeout(=0)=$to"
+> }
+
+poll_timeout_rate "$PASS_FILE"
+poll_timeout_rate "$DELAY_FILE"
+poll_timeout_rate "$JITTER_FILE"
+```
+
+Drop attack can be discovered using:
+```
+hufanhang@ubuntu$ count_net () {
+> echo "file=$1"
+> echo -n" recvfrom: "; grep -c "recvfrom(" "$1"
+> echo -n" sendto:   "; grep -c "sendto(" "$1"
+> }
+
+count_net "$PASS_FILE"
+count_net "$DROP_FILE"
+```
 
 First of all, I look the count of ```recvfrom``` and ```sendto``` to judge **drop attack**. We can see that ```recvfrom > sendto (1185 vs. 1086)```, which means the drop attack worked.
 
