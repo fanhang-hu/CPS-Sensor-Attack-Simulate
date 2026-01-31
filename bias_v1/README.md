@@ -1,5 +1,8 @@
-- **pass**: `sensor -> controller` direct (no MITM on the measurement path)
-- **bias**: `sensor -> mitm -> controller` where MITM adds a constant bias to the measurement
+## Fix the port of the sensor and set the whitelist
+
+**pass**: `sensor -> controller` direct (no MITM on the measurement path)
+
+**bias**: `sensor -> mitm -> controller` where MITM adds a constant bias to the measurement
 
 Fix the **sensor source port** so that, in `pass`, controller always receives from the same `(src_port)`. In `bias`, controller receives from a different source port (because MITM forwards), i.e., a **new writer on the channel** appears. This is observable
 purely from socket syscalls (`recvfrom/sendto`) without keying on the MITM executable name.
